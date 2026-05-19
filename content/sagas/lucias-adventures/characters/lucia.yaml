@@ -1,0 +1,36 @@
+id: lucia
+name: Lucía
+age: 4
+role: protagonist
+
+description: |
+  A 4-year-old girl with messy light brown hair and bright curious eyes. She tends to
+  be selective with her words — not because she cannot speak, but because she needs
+  time and the right moment to feel comfortable. She communicates confidently through
+  her hand-drawn pictogram notebook, which she carries everywhere.
+
+visual_prompt: |
+  A 4-year-old girl named Lucía with messy light brown hair, wearing a turquoise
+  t-shirt with a small yellow pocket on the chest and a red cloth wristband on her
+  wrist. She is smiling shyly but happily. Children's book illustration style,
+  soft colored pencil texture. Strictly no text, textless, no words.
+
+personality:
+  - observant
+  - empathetic
+  - creative
+  - selectively verbal (communicates via drawings when overwhelmed)
+
+traits:
+  communication_style: pictogram notebook
+  notebook_description: |
+    A small red ring-bound notebook filled with hand-drawn pictogram cards.
+    New cards are added after each meaningful experience.
+
+relationships:
+  - character_id: leo
+    relation: cousin
+    description: |
+      Leo is Lucía's slightly older cousin. He knows her "magic silence" well and
+      naturally acts as a bridge between Lucía and new people without ever making
+      her feel different or less capable.

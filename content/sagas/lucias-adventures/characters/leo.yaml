@@ -1,0 +1,25 @@
+id: leo
+name: Leo
+age: 5
+role: secondary
+
+description: |
+  Lucía's slightly older cousin. Cheerful, funny and perceptive. He has grown up
+  alongside Lucía and understands her communication style intuitively. He never
+  translates for her in a way that takes agency away — he facilitates.
+
+visual_prompt: |
+  A slightly taller boy than Lucía, around 5 years old, wearing a green t-shirt.
+  Cheerful expression, light complexion, short hair. Children's book illustration
+  style, soft colored pencil texture. Strictly no text, textless.
+
+personality:
+  - cheerful
+  - funny
+  - perceptive
+  - protective without being overprotective
+
+relationships:
+  - character_id: lucia
+    relation: cousin
+    description: Lucía's cousin. Knows her well and supports her communication naturally.

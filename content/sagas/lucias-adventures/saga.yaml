@@ -1,0 +1,39 @@
+id: lucias-adventures
+title: "The Magic Notebook"
+# Display title per language
+titles:
+  es: "El cuaderno mágico"
+  en: "The Magic Notebook"
+
+description: |
+  A series of picture books following Lucía, a 4-year-old girl who communicates
+  through her hand-drawn pictogram notebook. Each story explores a different social
+  situation — making friends, sharing, saying goodbye, dealing with feelings —
+  always showing that there are many valid ways to connect with others.
+
+target_age: "3-6"
+language_default: es
+
+characters:
+  - lucia
+  - leo
+
+books:
+  - id: book-01
+    title:
+      es: "El libro mágico de las palabras dibujadas"
+      en: "The Magic Book of Drawn Words"
+    number: 1
+    status: draft
+
+themes:
+  - communication diversity
+  - inclusion
+  - friendship
+  - emotional intelligence
+  - family
+
+notes: |
+  Character consistency anchor: Lucía always wears her turquoise t-shirt with yellow
+  pocket and red wristband. Leo always wears his green t-shirt. The red ring-bound
+  notebook is Lucía's defining object — always present.

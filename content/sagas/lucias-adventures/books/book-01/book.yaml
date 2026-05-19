@@ -1,0 +1,360 @@
+id: book-01
+saga_ref:
+  saga_id: lucas-adventures
+  book_number: 1
+
+metadata:
+  title:
+    es: "El libro mágico de las palabras dibujadas"
+    en: "The Magic Book of Drawn Words"
+  language: es
+  author: Diego Castro Viadero
+  edition: 1
+  status: draft          # draft | wip | ready | published
+  tags:
+    - communication
+    - inclusion
+    - friendship
+    - pictograms
+
+characters:
+  - lucia
+  - leo
+  - id: mateo
+    name: Mateo
+    role: guest
+    description: |
+      A boy of around Lucía's age who approaches the sandbox wanting to play.
+      He wears bright blue sneakers. Friendly and enthusiastic, he waits patiently
+      when Lucía needs a moment before answering him.
+    visual_prompt: |
+      A young boy around 4 years old with short dark hair, wearing a yellow t-shirt
+      and bright blue sneakers. Friendly, open expression. Children's book
+      illustration style. Strictly no text, textless.
+
+format:
+  size: 21x21cm
+  pages_interior: 24
+  cover: extended
+
+distributor_hints:
+  amazon_kdp:
+    interior_color: full_color
+    paper: white
+    bleed: true
+
+cover:
+  image_path: assets/images/cover.png
+  image_prompt: |
+    A 4-year-old girl named Lucía with messy light brown hair, wearing a turquoise
+    t-shirt with a small yellow pocket on the chest and a red cloth wristband on her
+    wrist. She is smiling shyly but happily, hugging a small red ring-bound notebook
+    tightly against her chest. In the background, a large green tree and a clear blue
+    sky. Children's book illustration style, soft colored pencil texture.
+    Strictly no text, textless, no words, clean art.
+  title_style:
+    font: rounded
+    color: "#2a6496"
+
+back_cover:
+  background_color: "very soft pastel blue"
+  image_path: assets/images/back-cover.png
+  image_prompt: |
+    In the centre, a small miniature of a red beach bucket and a spade.
+    Children's book illustration style. Strictly no text, textless.
+  summary:
+    es: |
+      A veces, las palabras se esconden muy profundo en la barriga y no quieren salir.
+      Pero Lucía descubrirá que no hace falta hablar alto para compartir un gran juego.
+      Una tierna historia sobre la comunicación, la paciencia y las diferentes formas
+      que tenemos de decir: "¡Sí!".
+    en: |
+      Sometimes words hide deep in your tummy and don't want to come out. But Lucía
+      will discover that you don't need to speak loudly to share a great game.
+      A tender story about communication, patience and the many ways we can say "Yes!".
+
+front_matter:
+  half_title:
+    background_color: white
+    title:
+      es: "El libro mágico de las palabras dibujadas"
+      en: "The Magic Book of Drawn Words"
+  copyright:
+    background_color: white
+    text:
+      es: "Texto e ilustraciones por Diego Castro Viadero. Copyright © 2026. Todos los derechos reservados."
+      en: "Text and illustrations by Diego Castro Viadero. Copyright © 2026. All rights reserved."
+  dedication:
+    background_color: white
+    text:
+      es: "Para todos los niños que descubren el mundo a su propio ritmo, y para las familias que saben escuchar sus silencios."
+      en: "For all the children who discover the world at their own pace, and for the families who know how to listen to their silences."
+
+spreads:
+  - number: 1
+    left:
+      background_color: "very soft pastel blue"
+      text:
+        es: |
+          A Lucía le encanta el parque los sábados. Hoy, su primo Leo, que es muy
+          gracioso, ha venido a jugar. Los dos están concentrados haciendo un castillo
+          de arena enorme en el rincón más tranquilo. Lucía sonríe feliz, no necesita
+          decir nada para pasarlo bien con Leo.
+        en: |
+          Lucía loves the park on Saturdays. Today her cousin Leo, who is very funny,
+          has come to play. They are both focused on building a huge sandcastle in the
+          quietest corner. Lucía smiles happily — she doesn't need to say anything to
+          have a great time with Leo.
+      short_text:
+        es: "Lucía juega en la arena. Su primo Leo le ayuda."
+        en: "Lucía plays in the sand. Her cousin Leo helps her."
+    right:
+      image_path: assets/images/spread-01-right.png
+      image_prompt: |
+        Lucía (4 years old, messy light brown hair, turquoise t-shirt with yellow
+        pocket, red wristband) and her cousin Leo (slightly taller boy, green t-shirt)
+        kneeling together in a clean, sunlit park sandbox. Both are smiling, focused
+        on building a geometric sandcastle together. Peaceful and bright summer park
+        background. Children's book illustration style, soft textures.
+        Strictly no text, textless, clean background.
+
+  - number: 2
+    left:
+      background_color: "very soft pastel yellow"
+      text:
+        es: |
+          De repente, se acerca un niño nuevo que lleva unas zapatillas azules muy
+          brillantes. "¿Puedo jugar con vosotros?", pregunta muy contento. Lucía deja
+          de sonreír. Mira las zapatillas azules. Mira al suelo. Sus palabras se
+          esconden muy profundamente en su barriga y no quieren salir. Se queda muy
+          quieta.
+        en: |
+          Suddenly, a new boy walks over wearing very bright blue trainers.
+          "Can I play with you?" he asks happily. Lucía stops smiling. She looks at
+          the blue trainers. She looks at the ground. Her words hide very deep in her
+          tummy and don't want to come out. She stays very still.
+      short_text:
+        es: "Un niño viene. Lleva zapatillas azules. Lucía no habla."
+        en: "A boy comes over. He wears blue trainers. Lucía doesn't speak."
+    right:
+      image_path: assets/images/spread-02-right.png
+      image_prompt: |
+        A new young boy with short dark hair and bright blue sneakers stands in front
+        of the sandbox holding his hands together hopefully. Leo looks up at him
+        curiously. Lucía is kneeling, slightly curled up, looking down at the sand
+        with a shy, frozen expression. Tense but gentle atmosphere.
+        Children's book illustration style. Strictly no text, textless, no letters.
+
+  - number: 3
+    left:
+      background_color: "very soft mint green"
+      text:
+        es: |
+          El niño nuevo se queda esperando, pero Lucía se siente incómoda. Leo, que
+          conoce bien el "silencio mágico" de Lucía, corre hacia la mochila que mamá
+          ha dejado en el banco. Saca un pequeño cuaderno de anillas con dibujos de
+          colores. "¡Es el libro de las palabras dibujadas de Lucía!", dice Leo.
+        en: |
+          The new boy waits, but Lucía feels uncomfortable. Leo, who knows Lucía's
+          "magic silence" well, runs towards the backpack that mum left on the bench.
+          He pulls out a small red ring-bound notebook covered in colourful drawings.
+          "It's Lucía's book of drawn words!" says Leo.
+      short_text:
+        es: "Leo corre a la mochila. Trae un libro pequeño."
+        en: "Leo runs to the backpack. He brings a small book."
+    right:
+      image_path: assets/images/spread-03-right.png
+      image_prompt: |
+        Leo running happily toward a blue backpack sitting on a wooden park bench,
+        holding a small red ring-bound notebook in his hand. In the blurred background,
+        Lucía remains in the sandbox and the boy with blue sneakers watches patiently.
+        Active and helpful mood. Children's book illustration style. Strictly no text, textless.
+
+  - number: 4
+    left:
+      background_color: "very soft pastel blue"
+      text:
+        es: |
+          Leo le da el cuaderno a Lucía. Lucía lo abre despacio. En las páginas hay
+          dibujos sencillos: un columpio, una pelota, un abrazo, un "SÍ" con pulgar
+          arriba y un "NO" con pulgar abajo. Lucía busca con su dedo y señala el dibujo
+          del castillo de arena y luego el dibujo del pulgar arriba ("SÍ").
+        en: |
+          Leo gives the notebook to Lucía. Lucía opens it slowly. On the pages there
+          are simple drawings: a swing, a ball, a hug, a "YES" with thumb up and a
+          "NO" with thumb down. Lucía searches with her finger and points to the
+          drawing of a sandcastle, then to the thumb-up drawing ("YES").
+      short_text:
+        es: "El libro tiene dibujos. Lucía señala el castillo. Lucía dice «SÍ»."
+        en: "The book has drawings. Lucía points to the castle. Lucía says 'YES'."
+    right:
+      image_path: assets/images/spread-04-right.png
+      image_prompt: |
+        Close-up macro shot of Lucía's small child hands holding an open red
+        ring-bound notebook. On the pages, simple colourful child-like pictogram
+        drawings inside square grids: a swing, a ball, a hug, a NO symbol (thumb
+        down), a YES symbol (thumb up), and a sandcastle. Lucía's small index finger
+        is firmly pointing at the sandcastle and the YES symbols.
+        Strictly no real words, no text, only simple graphic icons.
+
+  - number: 5
+    left:
+      background_color: "very soft pastel yellow"
+      text:
+        es: |
+          Leo le explica al niño: "¡Lucía dice que SÍ puedes jugar con nosotros!".
+          El niño sonríe, deja sus zapatillas azules junto al castillo y empieza a
+          cavar. Lucía siente cómo el nudo de su barriga se deshace. No ha necesitado
+          hablar, pero su libro le ha ayudado a decir lo que quería.
+        en: |
+          Leo explains to the boy: "Lucía says you CAN play with us!" The boy smiles,
+          sets his blue trainers beside the castle and starts digging. Lucía feels the
+          knot in her tummy come undone. She didn't need to speak, but her book helped
+          her say exactly what she wanted.
+      short_text:
+        es: "El niño sonríe. Los tres juegan juntos."
+        en: "The boy smiles. All three play together."
+    right:
+      image_path: assets/images/spread-05-right.png
+      image_prompt: |
+        General view of the park sandbox. Lucía, Leo, and the boy with short dark
+        hair and blue sneakers are all kneeling and playing happily together in the
+        sand. Lucas is smiling again, looking relaxed and included. Warm, joyful
+        lighting. Children's book illustration style. Strictly no text, textless.
+
+  - number: 6
+    left:
+      background_color: "very soft mint green"
+      text:
+        es: |
+          El niño hace un túnel largo en la arena y mira a Lucía. Lucía busca en su
+          cuaderno el dibujo de un coche y se lo enseña. No necesitan hablar. El niño
+          entiende el juego enseguida y hace rodar un camión de juguete por el túnel.
+          ¡El castillo ya tiene una carretera secreta!
+        en: |
+          The boy makes a long tunnel in the sand and looks at Lucía. Lucía finds the
+          drawing of a car in her notebook and shows it to him. They don't need to
+          speak. The boy understands the game straight away and rolls a toy truck
+          through the tunnel. The castle now has a secret road!
+      short_text:
+        es: "El niño hace un túnel. Lucía enseña un coche."
+        en: "The boy makes a tunnel. Lucía shows a car drawing."
+    right:
+      image_path: assets/images/spread-06-right.png
+      image_prompt: |
+        Medium shot of Lucía and the boy with blue sneakers in the sandbox. The boy
+        is laughing with his hands up, celebrating a long sand tunnel. Lucía is
+        smiling calmly, holding her open red notebook, showing him a simple drawing
+        of a little toy car. Mutual connection and quiet happiness.
+        Children's book illustration style. Strictly no text, textless.
+
+  - number: 7
+    left:
+      background_color: "very soft pastel blue"
+      text:
+        es: |
+          Cuando la mamá del niño le llama para merendar, él se levanta y sacude la
+          arena de sus zapatillas azules. "¡Adiós, Lucía! ¡Adiós, Leo!", dice agitando
+          la mano. Lucía no le contesta con la voz, pero le regala su mejor sonrisa y
+          levanta la mano muy alto para despedirse.
+        en: |
+          When the boy's mum calls him for a snack, he stands up and brushes the sand
+          from his blue trainers. "Bye, Lucía! Bye, Leo!" he says, waving his hand.
+          Lucía doesn't answer with her voice, but she gives him her biggest smile and
+          raises her hand high to wave goodbye.
+      short_text:
+        es: "El niño dice adiós. Lucía sonríe y saluda."
+        en: "The boy says goodbye. Lucía smiles and waves."
+    right:
+      image_path: assets/images/spread-07-right.png
+      image_prompt: |
+        The boy with blue sneakers is walking away in the background, his back turned,
+        waving his hand goodbye. In the foreground, Lucía and Leo are standing side by
+        side. Lucía has her hand raised high, waving back with a peaceful, happy and
+        satisfied smile on her face. Late afternoon soft golden light.
+        Children's book illustration style. Strictly no text, textless.
+
+  - number: 8
+    left:
+      background_color: "very soft pastel yellow"
+      text:
+        es: |
+          De camino a casa, papá y mamá le preguntan a Lucía: "¿Te lo has pasado bien
+          en el parque?". A veces, contar lo que ha pasado con palabras es difícil
+          porque hay demasiados recuerdos juntos. Así que Lucía abre su cuaderno
+          mágico y señala el dibujo del 'Castillo' y el de la 'Sonrisa'. Mamá la
+          abraza fuerte: "¡Qué bien, Lucía!".
+        en: |
+          On the way home, mum and dad ask Lucía: "Did you have a good time at the
+          park?" Sometimes telling what happened with words is hard because there are
+          too many memories all at once. So Lucía opens her magic notebook and points
+          to the drawing of the 'Castle' and the 'Smile'. Mum hugs her tight:
+          "That's wonderful, Lucía!"
+      short_text:
+        es: "Papá y mamá preguntan. Lucía enseña su libro."
+        en: "Mum and dad ask. Lucía shows her book."
+    right:
+      image_path: assets/images/spread-08-right.png
+      image_prompt: |
+        Lucía is showing her open red ring-bound notebook to her mother. The mother
+        is crouching down to her eye level with a tender, loving expression. The
+        father stands behind them, smiling warmly. Safe and validating family
+        atmosphere, cosy street or car interior.
+        Children's book illustration style. Strictly no text, textless.
+
+  - number: 9
+    left:
+      background_color: "very soft mint green"
+      text:
+        es: |
+          Antes de dormir, Lucía coge sus lápices de colores. Con la ayuda de papá,
+          dibuja en una tarjeta nueva unas zapatillas de color azul brillante. Es el
+          dibujo de su nuevo amigo. Lucía la pega en su cuaderno con mucho cuidado.
+          Su libro de palabras dibujadas es cada vez más grande.
+        en: |
+          Before bed, Lucía picks up her coloured pencils. With dad's help, she draws
+          a pair of bright blue trainers on a new card. It's the drawing of her new
+          friend. She sticks it in her notebook very carefully. Her book of drawn
+          words keeps getting bigger.
+      short_text:
+        es: "Lucía pinta un dibujo. Son unas zapatillas azules."
+        en: "Lucía draws a picture. It's a pair of blue trainers."
+    right:
+      image_path: assets/images/spread-09-right.png
+      image_prompt: |
+        Lucía sitting at a wooden table in her bedroom at night under the warm glow
+        of a desk lamp. She is carefully colouring a drawing of blue sneakers on a
+        small square piece of paper with a blue pencil. Her father sits next to her,
+        smiling and helping her clip the paper into the red ring-bound notebook.
+        Cosy, intimate evening mood. Children's book illustration style.
+        Strictly no text, textless.
+
+  - number: 10
+    left:
+      background_color: "very soft pastel blue"
+      text:
+        es: |
+          Cuando las luces se apagan, Lucía abraza su almohada y se duerme contenta.
+          Aunque hoy sus palabras querían estar en silencio, ella ha encontrado la
+          forma perfecta de compartir su mundo. Ahora sabe que hay muchas maneras de
+          contar historias, y la suya hoy ha sido la más especial.
+        en: |
+          When the lights go out, Lucía hugs her pillow and falls asleep happily.
+          Even though today her words wanted to stay silent, she found the perfect
+          way to share her world. Now she knows there are many ways to tell stories,
+          and hers today was the most special of all.
+      short_text:
+        es: "Lucía está feliz. El día ha sido divertido."
+        en: "Lucía is happy. It has been a wonderful day."
+    right:
+      image_path: assets/images/spread-10-right.png
+      image_prompt: |
+        Final peaceful scene. Lucía is tucked into her cosy bed, sleeping soundly
+        with a serene smile. On the wooden nightstand next to the bed, under the dim
+        soft light of a small night lamp, her red ring-bound notebook rests closed.
+        Night atmosphere, safe, calm and full of peace.
+        Children's book illustration style. Strictly no text, textless.
+
+back_matter:
+  closing:
+    background_color: white
