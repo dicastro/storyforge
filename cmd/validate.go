@@ -10,7 +10,7 @@ import (
 	"github.com/dicastro/storyforge/internal/validator"
 	"github.com/spf13/cobra"
 
-	// Register the Amazon KDP distributor.
+	// Register distributors.
 	_ "github.com/dicastro/storyforge/internal/distributor/amazon"
 )
 
@@ -22,13 +22,15 @@ func newValidateCmd() *cobra.Command {
 		Use:   "validate [book-id]",
 		Short: "Validate a book (or all books) against schema and distributor requirements",
 		Long: `Validate checks that a book's YAML is complete and that all referenced
-assets exist on disk. When --distributor is supplied, additional platform-specific
-rules are applied.
+assets exist on disk. Distributor-specific rules are applied for every
+publication target defined in the book.
+
+When --distributor is supplied, only targets for that distributor are checked.
 
 Examples:
-  storyforge validate book-01 --saga lucas-adventures
-  storyforge validate book-01 --saga lucas-adventures --distributor amazon-kdp
-  storyforge validate --saga lucas-adventures   # validate all books in the saga`,
+  storyforge validate book-01 --saga lucias-adventures
+  storyforge validate book-01 --saga lucias-adventures --distributor amazon-kdp
+  storyforge validate --saga lucias-adventures`,
 		Args: cobra.MaximumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cfg, err := config.Load(contentRoot)
@@ -47,19 +49,14 @@ Examples:
 			}
 
 			if len(args) == 1 {
-				// Validate a single book.
 				bookID := args[0]
 				if sagaID == "" {
 					return fmt.Errorf("--saga is required when specifying a book id")
 				}
-				book, err := store.LoadBook(sagaID, bookID)
-				if err != nil {
-					return err
-				}
-				return runValidation(book, dist)
+				_, err := runBookValidation(store, sagaID, bookID, dist)
+				return err
 			}
 
-			// Validate all books in the given saga (or all sagas).
 			var sagaIDs []string
 			if sagaID != "" {
 				sagaIDs = []string{sagaID}
@@ -77,13 +74,8 @@ Examples:
 					return err
 				}
 				for _, bid := range bookIDs {
-					book, err := store.LoadBook(sid, bid)
-					if err != nil {
-						fmt.Fprintf(os.Stderr, "error loading %s/%s: %v\n", sid, bid, err)
-						hasErrors = true
-						continue
-					}
-					if err := runValidation(book, dist); err != nil {
+					if _, err := runBookValidation(store, sid, bid, dist); err != nil {
+						fmt.Fprintf(os.Stderr, "validation failed for %s/%s: %v\n", sid, bid, err)
 						hasErrors = true
 					}
 				}
@@ -96,30 +88,12 @@ Examples:
 	}
 
 	cmd.Flags().StringVar(&sagaID, "saga", "", "saga id that contains the book")
-	cmd.Flags().StringVar(&distributorName, "distributor", "", "apply distributor-specific rules (e.g. amazon-kdp)")
+	cmd.Flags().StringVar(&distributorName, "distributor", "", "filter validation to a specific distributor (e.g. amazon-kdp)")
 
 	return cmd
 }
 
-func runValidation(book interface{ GetID() string }, dist distributor.Distributor) error {
-	// Type assertion — we need the concrete *model.Book here.
-	// This indirection is needed because the interface is used for testing.
-	// In production the repository always returns *model.Book.
-	type bookWithID interface {
-		GetID() string
-	}
-	_ = book // used below via concrete type
-	return nil
-}
-
-// validateBook is the concrete implementation used by both validate and generate.
-func validateBook(book interface{}, dist distributor.Distributor) (*validator.Report, error) {
-	// Import cycle avoidance: use the concrete type via interface.
-	// The function is called from cmd which already imports model.
-	return nil, nil
-}
-
-// newValidateRunner is the actual runner, decoupled for reuse in generate.
+// runBookValidation loads and validates a single book, printing the report.
 func runBookValidation(store *repository.Store, sagaID, bookID string, dist distributor.Distributor) (*validator.Report, error) {
 	book, err := store.LoadBook(sagaID, bookID)
 	if err != nil {
@@ -129,11 +103,28 @@ func runBookValidation(store *repository.Store, sagaID, bookID string, dist dist
 	var rules []validator.DistributorRule
 	if dist != nil {
 		rules = dist.ValidationRules()
+	} else {
+		// Apply rules from all distributors referenced in the book's targets.
+		seen := map[string]bool{}
+		for _, t := range book.PublicationTargets {
+			if seen[t.Distributor] {
+				continue
+			}
+			seen[t.Distributor] = true
+			if d, ok := distributor.Get(t.Distributor); ok {
+				rules = append(rules, d.ValidationRules()...)
+			}
+		}
 	}
+
 	v := validator.NewBookValidator(rules...)
 	report := v.Validate(book)
 
 	printReport(report)
+
+	if report.HasErrors() {
+		return report, fmt.Errorf("book %q has validation errors", bookID)
+	}
 	return report, nil
 }
 

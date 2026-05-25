@@ -16,10 +16,10 @@ func newShowCmd() *cobra.Command {
 		Use:   "show <book-id>",
 		Short: "Show detailed information about a book",
 		Long: `Show prints a structured summary of a book: metadata, characters,
-spread count, image asset status, and more.
+publication targets, spread count, image asset status, and typography settings.
 
 Examples:
-  storyforge show book-01 --saga lucas-adventures`,
+  storyforge show book-01 --saga lucias-adventures`,
 		Args: cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			bookID := args[0]
@@ -56,6 +56,23 @@ Examples:
 				fmt.Printf("  Tags:     %s\n", strings.Join(book.Metadata.Tags, ", "))
 			}
 
+			// Typography
+			if book.Font != nil {
+				fmt.Printf("\n  Book font: %s %.1fpt %s\n",
+					book.Font.Family, book.Font.SizePt, book.Font.Color)
+			}
+
+			// Publication targets
+			if len(book.PublicationTargets) > 0 {
+				fmt.Printf("\n  Publication targets (%d):\n", len(book.PublicationTargets))
+				for _, t := range book.PublicationTargets {
+					fmt.Printf("    • %-12s  %-10s  %-4s  %-10s  %-10s  %s\n",
+						t.Distributor, t.Size, t.Language, t.Binding, t.Paper, t.InteriorColor)
+				}
+			} else {
+				fmt.Println("\n  Publication targets: (none defined)")
+			}
+
 			fmt.Printf("\n  Characters (%d):\n", len(book.ResolvedCharacters))
 			for _, c := range book.ResolvedCharacters {
 				hasPrompt := "✗ no visual prompt"
@@ -70,6 +87,8 @@ Examples:
 				hasText := s.Left.Text.Get("es") != "" || s.Left.Text.Get("en") != ""
 				hasImg := s.Right.ImagePath != ""
 				hasPrompt := s.Right.ImagePrompt != ""
+				hasFont := s.Left.Font != nil || s.Right.Font != nil
+				hasBox := s.Left.TextBox != nil
 
 				textMark := "✗"
 				if hasText {
@@ -81,7 +100,14 @@ Examples:
 				} else if hasPrompt {
 					imgMark = "⚠ prompt only"
 				}
-				fmt.Printf("    [%2d]  text: %s  image: %s\n", s.Number, textMark, imgMark)
+				extra := ""
+				if hasFont {
+					extra += " [font override]"
+				}
+				if hasBox {
+					extra += " [text box]"
+				}
+				fmt.Printf("    [%2d]  text: %s  image: %s%s\n", s.Number, textMark, imgMark, extra)
 			}
 
 			missing := book.MissingImages()

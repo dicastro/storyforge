@@ -1,6 +1,6 @@
 id: book-01
 saga_ref:
-  saga_id: lucas-adventures
+  saga_id: lucias-adventures
   book_number: 1
 
 metadata:
@@ -16,6 +16,20 @@ metadata:
     - inclusion
     - friendship
     - pictograms
+
+# Book-level default typography.
+# Individual spreads can override any of these fields via their own font: block.
+# Text values in YAML support inline HTML for rich formatting:
+#   <b>bold</b>  <i>italic</i>  <u>underline</u>  <s>strikethrough</s>
+#   <span style="color:#rrggbb">coloured text</span>  <br> (line break)
+# Paragraph breaks are preserved from YAML literal block scalars (|).
+font:
+  family: Rounded          # font family name; must be available at PDF render time
+  size_pt: 14
+  color: "#333333"
+  align: left
+  line_height_pct: 130
+  paragraph_spacing_pt: 8
 
 characters:
   - lucia
@@ -37,11 +51,23 @@ format:
   pages_interior: 24
   cover: extended
 
-distributor_hints:
-  amazon_kdp:
-    interior_color: full_color
+# Each entry produces an independent set of PDFs and artefacts.
+# Common physical properties (size, binding, paper) are shared; the distributor
+# decides at validation time whether it supports that combination.
+publication_targets:
+  - distributor: amazon-kdp
+    size: 21x21cm
+    language: es
+    binding: paperback
     paper: white
-    bleed: true
+    interior_color: full_color
+
+  - distributor: amazon-kdp
+    size: 21x21cm
+    language: en
+    binding: paperback
+    paper: white
+    interior_color: full_color
 
 cover:
   image_path: assets/images/cover.png
@@ -219,7 +245,7 @@ spreads:
       image_prompt: |
         General view of the park sandbox. Lucía, Leo, and the boy with short dark
         hair and blue sneakers are all kneeling and playing happily together in the
-        sand. Lucas is smiling again, looking relaxed and included. Warm, joyful
+        sand. Lucía is smiling again, looking relaxed and included. Warm, joyful
         lighting. Children's book illustration style. Strictly no text, textless.
 
   - number: 6
@@ -332,6 +358,19 @@ spreads:
   - number: 10
     left:
       background_color: "very soft pastel blue"
+      # Example of a spread-level font override. This spread uses a slightly
+      # larger, centred font for the final page — an emotional close.
+      font:
+        size_pt: 16
+        align: center
+        style: [italic]
+      # Example of a custom text box — text is placed in the lower two-thirds
+      # of the left page, leaving room for a small illustration above.
+      text_box:
+        x: 10
+        y: 40
+        width: 0    # 0 = extend to right margin
+        height: 0   # 0 = extend to bottom margin
       text:
         es: |
           Cuando las luces se apagan, Lucía abraza su almohada y se duerme contenta.

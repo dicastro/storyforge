@@ -1,0 +1,230 @@
+# Amazon KDP physical specifications.
+# Source: https://kdp.amazon.com/en_US/help/topic/G201953020
+# All measurements in inches unless noted.
+# This file is loaded at runtime — no recompile needed to update specs.
+
+name: amazon-kdp
+display_name: Amazon KDP
+
+# Spine width = pages * thickness_per_page_inches + cover_board_inches
+# The cover_board_inches constant accounts for the cover stock itself.
+cover_board_inches: 0.06
+
+sizes:
+  - id: "5x8"
+    width_inches: 5.0
+    height_inches: 8.0
+    bleed_inches: 0.125
+    bindings:
+      paperback:
+        supported: true
+        min_pages: 24
+        max_pages: 828
+        paper_types:
+          white:
+            supported: true
+            thickness_per_page_inches: 0.002252
+          cream:
+            supported: true
+            thickness_per_page_inches: 0.002252
+          color:
+            supported: true
+            thickness_per_page_inches: 0.002347
+      hardcover:
+        supported: false
+
+  - id: "5.5x8.5"
+    width_inches: 5.5
+    height_inches: 8.5
+    bleed_inches: 0.125
+    bindings:
+      paperback:
+        supported: true
+        min_pages: 24
+        max_pages: 828
+        paper_types:
+          white:
+            supported: true
+            thickness_per_page_inches: 0.002252
+          cream:
+            supported: true
+            thickness_per_page_inches: 0.002252
+          color:
+            supported: true
+            thickness_per_page_inches: 0.002347
+      hardcover:
+        supported: true
+        min_pages: 75
+        max_pages: 550
+        paper_types:
+          white:
+            supported: true
+            thickness_per_page_inches: 0.002500
+          cream:
+            supported: false
+          color:
+            supported: true
+            thickness_per_page_inches: 0.002500
+
+  - id: "6x9"
+    width_inches: 6.0
+    height_inches: 9.0
+    bleed_inches: 0.125
+    bindings:
+      paperback:
+        supported: true
+        min_pages: 24
+        max_pages: 828
+        paper_types:
+          white:
+            supported: true
+            thickness_per_page_inches: 0.002252
+          cream:
+            supported: true
+            thickness_per_page_inches: 0.002252
+          color:
+            supported: true
+            thickness_per_page_inches: 0.002347
+      hardcover:
+        supported: true
+        min_pages: 75
+        max_pages: 550
+        paper_types:
+          white:
+            supported: true
+            thickness_per_page_inches: 0.002500
+          cream:
+            supported: false
+          color:
+            supported: true
+            thickness_per_page_inches: 0.002500
+
+  - id: "7x10"
+    width_inches: 7.0
+    height_inches: 10.0
+    bleed_inches: 0.125
+    bindings:
+      paperback:
+        supported: true
+        min_pages: 24
+        max_pages: 828
+        paper_types:
+          white:
+            supported: true
+            thickness_per_page_inches: 0.002252
+          cream:
+            supported: true
+            thickness_per_page_inches: 0.002252
+          color:
+            supported: true
+            thickness_per_page_inches: 0.002347
+      hardcover:
+        supported: true
+        min_pages: 75
+        max_pages: 550
+        paper_types:
+          white:
+            supported: true
+            thickness_per_page_inches: 0.002500
+          cream:
+            supported: false
+          color:
+            supported: true
+            thickness_per_page_inches: 0.002500
+
+  - id: "8x8"
+    width_inches: 8.0
+    height_inches: 8.0
+    bleed_inches: 0.125
+    bindings:
+      paperback:
+        supported: true
+        min_pages: 24
+        max_pages: 600
+        paper_types:
+          white:
+            supported: true
+            thickness_per_page_inches: 0.002252
+          cream:
+            supported: false
+          color:
+            supported: true
+            thickness_per_page_inches: 0.002347
+      hardcover:
+        supported: false
+
+  - id: "8.5x8.5"
+    width_inches: 8.5
+    height_inches: 8.5
+    bleed_inches: 0.125
+    bindings:
+      paperback:
+        supported: true
+        min_pages: 24
+        max_pages: 600
+        paper_types:
+          white:
+            supported: true
+            thickness_per_page_inches: 0.002252
+          cream:
+            supported: false
+          color:
+            supported: true
+            thickness_per_page_inches: 0.002347
+      hardcover:
+        supported: false
+
+  - id: "8.5x11"
+    width_inches: 8.5
+    height_inches: 11.0
+    bleed_inches: 0.125
+    bindings:
+      paperback:
+        supported: true
+        min_pages: 24
+        max_pages: 828
+        paper_types:
+          white:
+            supported: true
+            thickness_per_page_inches: 0.002252
+          cream:
+            supported: true
+            thickness_per_page_inches: 0.002252
+          color:
+            supported: true
+            thickness_per_page_inches: 0.002347
+      hardcover:
+        supported: true
+        min_pages: 75
+        max_pages: 550
+        paper_types:
+          white:
+            supported: true
+            thickness_per_page_inches: 0.002500
+          cream:
+            supported: false
+          color:
+            supported: true
+            thickness_per_page_inches: 0.002500
+
+  # 21x21cm expressed in inches (1 inch = 25.4 mm)
+  - id: "21x21cm"
+    width_inches: 8.268
+    height_inches: 8.268
+    bleed_inches: 0.125
+    bindings:
+      paperback:
+        supported: true
+        min_pages: 24
+        max_pages: 600
+        paper_types:
+          white:
+            supported: true
+            thickness_per_page_inches: 0.002252
+          cream:
+            supported: false
+          color:
+            supported: true
+            thickness_per_page_inches: 0.002347
+      hardcover:
+        supported: false

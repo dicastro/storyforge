@@ -53,7 +53,6 @@ func (s *Store) LoadSaga(sagaID string) (*model.Saga, error) {
 		return nil, fmt.Errorf("loading saga %q: %w", sagaID, err)
 	}
 
-	// Resolve character files.
 	for _, charID := range saga.Characters {
 		char, err := s.loadSagaCharacter(sagaID, charID)
 		if err != nil {
@@ -65,7 +64,6 @@ func (s *Store) LoadSaga(sagaID string) (*model.Saga, error) {
 	return saga, nil
 }
 
-// loadSagaCharacter loads a character YAML from the saga's characters/ folder.
 func (s *Store) loadSagaCharacter(sagaID, charID string) (*model.Character, error) {
 	path := filepath.Join(s.SagasDir(), sagaID, "characters", charID+".yaml")
 	char, err := decodeYAML[model.Character](path)
@@ -94,21 +92,18 @@ func (s *Store) LoadBook(sagaID, bookID string) (*model.Book, error) {
 	}
 	book.RootPath = bookDir
 
-	// Attach saga.
 	saga, err := s.LoadSaga(sagaID)
 	if err != nil {
 		return nil, err
 	}
 	book.Saga = saga
 
-	// Resolve characters: saga-level characters first, then inline guest characters.
 	charMap := make(map[string]*model.Character)
 	for _, c := range saga.ResolvedCharacters {
 		charMap[c.ID] = c
 	}
 	for _, ref := range book.Characters {
 		if _, exists := charMap[ref.ID]; !exists && ref.Name != "" {
-			// Inline guest character defined directly in the book.
 			charMap[ref.ID] = &model.Character{
 				ID:           ref.ID,
 				Name:         ref.Name,
@@ -177,7 +172,6 @@ func (s *Store) ListAllBooks() ([]*model.Book, error) {
 
 // ---- Helpers -----------------------------------------------------------------
 
-// decodeYAML reads a YAML file and unmarshals it into T.
 func decodeYAML[T any](path string) (*T, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
@@ -190,7 +184,6 @@ func decodeYAML[T any](path string) (*T, error) {
 	return &v, nil
 }
 
-// listSubdirectories returns the names of immediate subdirectories.
 func listSubdirectories(dir string) ([]string, error) {
 	entries, err := os.ReadDir(dir)
 	if err != nil {

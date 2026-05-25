@@ -30,9 +30,9 @@ func newStatusCmd() *cobra.Command {
 A note can be attached to record why the status changed.
 
 Examples:
-  storyforge status book-01 wip --saga lucas-adventures
-  storyforge status book-01 ready --saga lucas-adventures --note "All images approved"
-  storyforge status book-01 published --saga lucas-adventures`,
+  storyforge status book-01 wip --saga lucias-adventures
+  storyforge status book-01 ready --saga lucias-adventures --note "All images approved"
+  storyforge status book-01 published --saga lucias-adventures`,
 		Args: cobra.ExactArgs(2),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			bookID := args[0]
@@ -84,7 +84,6 @@ Examples:
 				return err
 			}
 
-			// Append a note to notes.md if provided.
 			if note != "" {
 				notesPath := book.RootPath + "/notes.md"
 				entry := fmt.Sprintf("\n---\n\n## Status change: %s → %s (%s)\n\n%s\n",
@@ -108,8 +107,6 @@ Examples:
 	return cmd
 }
 
-// updateBookStatus reads the book.yaml, updates the status field and writes it back.
-// It does a targeted field update to preserve the rest of the YAML structure.
 func updateBookStatus(book *model.Book, newStatus model.BookStatus) error {
 	bookFile := book.RootPath + "/book.yaml"
 
@@ -118,13 +115,11 @@ func updateBookStatus(book *model.Book, newStatus model.BookStatus) error {
 		return fmt.Errorf("reading book file: %w", err)
 	}
 
-	// Parse into a generic node tree to preserve formatting/comments.
 	var root yaml.Node
 	if err := yaml.Unmarshal(raw, &root); err != nil {
 		return fmt.Errorf("parsing book YAML: %w", err)
 	}
 
-	// Walk the tree to update metadata.status.
 	if len(root.Content) > 0 {
 		setYAMLField(root.Content[0], "metadata", "status", string(newStatus))
 	}
@@ -140,7 +135,6 @@ func updateBookStatus(book *model.Book, newStatus model.BookStatus) error {
 	return nil
 }
 
-// setYAMLField navigates a YAML mapping node and sets parent.child = value.
 func setYAMLField(node *yaml.Node, parent, child, value string) {
 	if node.Kind != yaml.MappingNode {
 		return

@@ -10,7 +10,6 @@ import (
 
 var contentRoot string
 
-// rootCmd is the base command when called without any subcommands.
 var rootCmd = &cobra.Command{
 	Use:   "storyforge",
 	Short: "A CLI for managing and publishing picture books",
@@ -22,7 +21,6 @@ Run 'storyforge help <command>' for detailed usage.`,
 }
 
 // Execute adds all child commands to the root command and sets flags.
-// This is called by main.main() and only needs to happen once.
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Fprintln(os.Stderr, err)

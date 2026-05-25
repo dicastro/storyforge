@@ -22,9 +22,9 @@ func newListCmd() *cobra.Command {
 Examples:
   storyforge list books
   storyforge list books --status draft
-  storyforge list books --saga lucas-adventures
+  storyforge list books --saga lucias-adventures
   storyforge list sagas
-  storyforge list characters --saga lucas-adventures`,
+  storyforge list characters --saga lucias-adventures`,
 		Args:      cobra.MaximumNArgs(1),
 		ValidArgs: []string{"books", "sagas", "characters"},
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -64,8 +64,8 @@ func listBooks(store *repository.Store, filterStatus, filterSaga string) error {
 		return err
 	}
 
-	fmt.Printf("%-20s %-12s %-12s %-40s\n", "BOOK ID", "SAGA", "STATUS", "TITLE")
-	fmt.Println(strings.Repeat("─", 90))
+	fmt.Printf("%-20s %-20s %-12s %-40s\n", "BOOK ID", "SAGA", "STATUS", "TITLE")
+	fmt.Println(strings.Repeat("─", 96))
 
 	count := 0
 	for _, book := range books {
@@ -80,9 +80,9 @@ func listBooks(store *repository.Store, filterStatus, filterSaga string) error {
 			continue
 		}
 		title := book.Metadata.Title.Get(book.Metadata.Language)
-		fmt.Printf("%-20s %-12s %-12s %-40s\n",
+		fmt.Printf("%-20s %-20s %-12s %-40s\n",
 			book.ID,
-			truncate(sagaID, 12),
+			truncate(sagaID, 20),
 			statusIcon(book.Metadata.Status)+" "+string(book.Metadata.Status),
 			truncate(title, 40),
 		)
@@ -101,17 +101,17 @@ func listSagas(store *repository.Store) error {
 		return err
 	}
 
-	fmt.Printf("%-20s %-10s %-40s\n", "SAGA ID", "BOOKS", "TITLE")
-	fmt.Println(strings.Repeat("─", 75))
+	fmt.Printf("%-25s %-10s %-40s\n", "SAGA ID", "BOOKS", "TITLE")
+	fmt.Println(strings.Repeat("─", 78))
 
 	for _, id := range sagaIDs {
 		saga, err := store.LoadSaga(id)
 		if err != nil {
-			fmt.Printf("%-20s  (error: %v)\n", id, err)
+			fmt.Printf("%-25s  (error: %v)\n", id, err)
 			continue
 		}
 		bookIDs, _ := store.ListBookIDsForSaga(id)
-		fmt.Printf("%-20s %-10d %-40s\n",
+		fmt.Printf("%-25s %-10d %-40s\n",
 			id,
 			len(bookIDs),
 			truncate(saga.Title.Get("es"), 40),
@@ -130,8 +130,8 @@ func listCharacters(store *repository.Store, filterSaga string) error {
 		return err
 	}
 
-	fmt.Printf("%-15s %-20s %-8s %-10s %-30s\n", "SAGA", "ID", "AGE", "ROLE", "NAME")
-	fmt.Println(strings.Repeat("─", 90))
+	fmt.Printf("%-20s %-20s %-8s %-12s %-30s\n", "SAGA", "ID", "AGE", "ROLE", "NAME")
+	fmt.Println(strings.Repeat("─", 94))
 
 	for _, sagaID := range sagaIDs {
 		if filterSaga != "" && sagaID != filterSaga {
@@ -142,11 +142,11 @@ func listCharacters(store *repository.Store, filterSaga string) error {
 			continue
 		}
 		for _, c := range saga.ResolvedCharacters {
-			fmt.Printf("%-15s %-20s %-8d %-10s %-30s\n",
-				truncate(sagaID, 15),
+			fmt.Printf("%-20s %-20s %-8d %-12s %-30s\n",
+				truncate(sagaID, 20),
 				truncate(c.ID, 20),
 				c.Age,
-				truncate(c.Role, 10),
+				truncate(c.Role, 12),
 				c.Name,
 			)
 		}

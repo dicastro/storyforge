@@ -23,7 +23,18 @@ type Distributor interface {
 	// Generate produces all output files required for submission and writes
 	// them into outputDir. It returns a GenerationResult describing what was
 	// created and any warnings encountered.
-	Generate(book *model.Book, outputDir string) (*GenerationResult, error)
+	//
+	// target specifies which publication target to generate for.
+	// opts controls optional generation behaviour (e.g. mock images).
+	Generate(book *model.Book, target model.PublicationTarget, outputDir string, opts GenerateOptions) (*GenerationResult, error)
+}
+
+// GenerateOptions controls optional behaviour during generation.
+type GenerateOptions struct {
+	// MockImages replaces missing or all images with a white placeholder bearing
+	// a diagonal cross, sized to the exact required dimensions. Useful for
+	// previewing PDF layout before real images are ready.
+	MockImages bool
 }
 
 // GeneratedFile describes a single output file produced during generation.
@@ -38,13 +49,13 @@ type GeneratedFile struct {
 type GenerationResult struct {
 	Distributor string
 	BookID      string
+	Target      model.PublicationTarget
 	OutputDir   string
 	Files       []GeneratedFile
 	Warnings    []string
 }
 
 // Registry maps distributor name → implementation.
-// Register your distributor here at init() time.
 var Registry = map[string]Distributor{}
 
 // Register adds a distributor to the global registry.
@@ -59,7 +70,7 @@ func Get(name string) (Distributor, bool) {
 	return d, ok
 }
 
-// Names returns all registered distributor names, sorted.
+// Names returns all registered distributor names.
 func Names() []string {
 	names := make([]string, 0, len(Registry))
 	for n := range Registry {

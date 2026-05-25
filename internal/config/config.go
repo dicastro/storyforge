@@ -14,9 +14,9 @@ type Config struct {
 	ContentRoot string
 }
 
-// Load resolves configuration, preferring the STORYFORGE_CONTENT env var,
-// then looking for a content/ directory relative to the current working dir,
-// and finally falling back to the provided default.
+// Load resolves configuration, preferring the explicit override, then the
+// STORYFORGE_CONTENT environment variable, then a content/ directory relative
+// to the current working directory.
 func Load(override string) (*Config, error) {
 	root := override
 	if root == "" {
